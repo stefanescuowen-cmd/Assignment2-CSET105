@@ -9,7 +9,7 @@ var userScore = 0;
 var compScore = 0;
 var tieScore = 0;
 
-var amountOfPlays = 0;
+var amountOfPlays = 1;
 
 
 //1 = rock
@@ -107,6 +107,7 @@ function UpdateScoreboard()
 function AddHistory(user, computer)
 {
     let historyDiv = document.getElementById("moveHistory");
+    
 
     //convert index of selection to visible text for user
     let userItemName;
@@ -129,6 +130,11 @@ function AddHistory(user, computer)
 
     //add a new history item
     let newHistoryItem = document.createElement("p");
-    newHistoryItem.innerText = (`${amountOfPlays}.You - ${userItemName}, Computer - ${compItemName}`);
+    newHistoryItem.innerText = (`${amountOfPlays}. You - ${userItemName}, Computer - ${compItemName}`);
     historyDiv.append(newHistoryItem);
+
+    //scroll to bottom so newest move is visible
+    historyDiv.scrollTop = historyDiv.scrollHeight;
 }
+
+function 
