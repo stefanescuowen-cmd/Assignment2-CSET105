@@ -31,6 +31,7 @@ function CompareChoices()
     if (userSelection === compSelection)
     {
         tieScore++;
+        UpdateScoreboard();
     }
     //if user plays rock
     else if (userSelection === 1)
@@ -39,11 +40,13 @@ function CompareChoices()
         if (compSelection === 2)
         {
             compScore++;
+            UpdateScoreboard();
         }
         //computer loses with scissors
         else if (compSelection === 3)
         {
             userScore++;
+            UpdateScoreboard();
         }
     }
     //if user plays paper
@@ -53,11 +56,13 @@ function CompareChoices()
         if (compSelection === 1)
         {
             userScore++;
+            UpdateScoreboard();
         }
         //computer wins with scissors
         else if (compSelection === 3)
         {
-            compScore
+            compScore++;
+            UpdateScoreboard();
         }
     }
     //if user plays scissors
@@ -67,11 +72,13 @@ function CompareChoices()
         if (compSelection === 2)
         {
             userScore++;
+            UpdateScoreboard();
         }
         //computer wins with rock
         else if (compSelection === 1)
         {
             compScore++;
+            UpdateScoreboard();
         }
     }
 }
