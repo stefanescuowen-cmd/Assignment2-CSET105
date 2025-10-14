@@ -1,3 +1,5 @@
+/* Owen */
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
 * {
@@ -6,6 +8,7 @@
     margin: 0;
 }
 
+/*MAIN AREA STYLING*/
 body{
     text-align: center;
 
@@ -54,7 +57,7 @@ body{
     padding: 5px 0;
 }
 
-
+/*ACTION BUTTONS STYLING*/
 #btn {
     width: 80%;
     display: flex;
@@ -102,7 +105,7 @@ body{
     pointer-events: none;
 }
 
-/*DYNAM STYLING*/
+/*DYNAMIC ELEMENTS STYLING*/
 #animText p {
     font-size: 25px;
     color: #0eb3ff;
@@ -121,6 +124,8 @@ body{
     box-shadow: 0 0 20px #0086c4;
 
 }
+
+/*Caleb*/
 
 /*RESET BUTTON STYLING*/
 #resetButton {

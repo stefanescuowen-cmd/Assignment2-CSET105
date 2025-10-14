@@ -3,6 +3,8 @@
 //when computer selection done, compare user and computer choices
 //update score
 
+
+//Caleb
 var userSelection;
 var compSelection;
 var userScore = 0;
@@ -33,6 +35,7 @@ function InitializeScoreboard()
     
 }
 
+//when user pushes button on page, assigns that value and triggers computer turn
 function OnButtonPressed(value)
 {
     userSelection = Number(value);
@@ -40,6 +43,7 @@ function OnButtonPressed(value)
     ComputerTurn();
 }
 
+//gets random computer value and then compares to player
 function ComputerTurn()
 {
     //ensures the computer selects a new one each time
@@ -53,6 +57,7 @@ function ComputerTurn()
     CompareChoices();
 }
 
+//compares the user input and computer input
 function CompareChoices()
 {
     //check if tie
@@ -119,6 +124,7 @@ function CompareChoices()
     }
 }
 
+//changes the scoreboard text to reflect score and updates history too
 function UpdateScoreboard()
 {
     let scoreboard = document.getElementById("scoreboard");
@@ -134,6 +140,7 @@ function UpdateScoreboard()
     
 }
 
+//puts element in the history box
 function AddHistory(user, computer)
 {
     let historyDiv = document.getElementById("moveHistory");
@@ -151,8 +158,6 @@ function AddHistory(user, computer)
 function SetItemNames()
 {
     //convert index of selection to visible text for user
-    
-
     if (userSelection === 1)
         userItemName = "Rock";
     else if (userSelection === 2)
@@ -168,6 +173,7 @@ function SetItemNames()
         compItemName = "Scissors";
 }
 
+//plays after user selects box to give time for code to update and display computer selection to user
 async function SelectionAnimation()
 {
     let buttons = document.getElementById("btn");
@@ -197,10 +203,12 @@ async function SelectionAnimation()
     UpdateScoreboard();
 }
 
+//used for waiting for time
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+//reloads page on game reset button
 function ResetGame()
 {
     window.location.reload();
