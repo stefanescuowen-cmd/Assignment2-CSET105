@@ -5,9 +5,12 @@
 
 var userSelection;
 var compSelection;
-var userScore;
-var compScore;
-var tieScore;
+var userScore = 0;
+var compScore = 0;
+var tieScore = 0;
+
+var amountOfPlays = 0;
+
 
 //1 = rock
 //2 = paper
@@ -15,14 +18,16 @@ var tieScore;
 
 function OnButtonPressed(value)
 {
-    userSelection = value;
+    userSelection = Number(value);
 
     ComputerTurn();
 }
 
 function ComputerTurn()
 {
-    compSelection = Math.floor(Math.random() * (Math.floor(3) - Math.ceil(1) + 1)) + Math.ceil(1);
+    compSelection = Number(Math.floor(Math.random() * (Math.floor(3) - Math.ceil(1) + 1)) + Math.ceil(1));
+
+    CompareChoices();
 }
 
 function CompareChoices()
@@ -79,6 +84,7 @@ function CompareChoices()
         {
             compScore++;
             UpdateScoreboard();
+            
         }
     }
 }
@@ -87,6 +93,42 @@ function UpdateScoreboard()
 {
     let scoreboard = document.getElementById("scoreboard");
 
-    scoreboard.innerText = (`You - ${userScore}, Computer - ${compScore}, Tie - ${tieScore}`);
+    //update the history first
+    AddHistory(userSelection, compSelection);
+
+    //update actual scoreboard text
+    scoreboard.innerHTML = `<strong>You - ${userScore}, Computer - ${compScore}, Tie - ${tieScore}</strong>`;
+
+    //update number of plays
+    amountOfPlays++;
     
+}
+
+function AddHistory(user, computer)
+{
+    let historyDiv = document.getElementById("moveHistory");
+
+    //convert index of selection to visible text for user
+    let userItemName;
+    let compItemName;
+
+    if (userSelection === 1)
+        userItemName = "Rock";
+    else if (userSelection === 2)
+        userItemName = "Paper";
+    else if (userSelection === 3)
+        userItemName = "Scissors";
+
+    if (compSelection === 1)
+        compItemName = "Rock";
+    else if (compSelection === 2)
+        compItemName = "Paper";
+    else if (compSelection === 3)
+        compItemName = "Scissors";
+
+
+    //add a new history item
+    let newHistoryItem = document.createElement("p");
+    newHistoryItem.innerText = (`${amountOfPlays}.You - ${userItemName}, Computer - ${compItemName}`);
+    historyDiv.append(newHistoryItem);
 }

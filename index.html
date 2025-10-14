@@ -10,11 +10,18 @@
 
     <section id="main">
         <h1>Rock Paper Scissors</h1>
-        <button id="rock" onclick="OnButtonPressed(1)">Rock</button>
-        <button id="paper" onclick="OnButtonPressed(2)">Paper</button>
-        <button id="scissors" onclick="OnButtonPressed(3)">Scissors</button>
-        <h2>Score:</h2>
-        <p id="scoreboard"></p>
+        <div id="mainContent">
+            <div id="btn">
+                <button id="rock" onclick="OnButtonPressed(1)">Rock</button>
+                <button id="paper" onclick="OnButtonPressed(2)">Paper</button>
+                <button id="scissors" onclick="OnButtonPressed(3)">Scissors</button>
+            </div>
+            <div>
+                <h2>Score:</h2>
+                <p id="scoreboard"></p>
+                <div id="moveHistory"></div>
+            </div>
+        </div>
     </section>
 
     <script src="script.js"></script>

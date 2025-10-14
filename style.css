@@ -3,3 +3,37 @@
     padding: 0;
     margin: 0;
 }
+
+body{
+    text-align: center;
+}
+
+#mainContent {
+    display: flex;
+    justify-content: center;
+}
+
+#mainContent div {
+    padding: 2rem;
+}
+
+#moveHistory {
+    padding: 0;
+    text-align: left;
+}
+
+#main h1{
+    
+}
+
+#btn button{
+
+}
+
+#scoreboard{
+
+}
+
+#moveHistory{
+
+}
