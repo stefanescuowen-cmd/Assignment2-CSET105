@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css">
+     <link rel="icon" type="image/png" href="images/rock.png">
 </head>
 <body>
 
@@ -16,11 +17,15 @@
                 <button id="paper" onclick="OnButtonPressed(2)"><img src="images/paper.webp" alt="rock"></button>
                 <button id="scissors" onclick="OnButtonPressed(3)"><img src="images/scissors.png" alt="rock"></button>
             </div>
+            <div id="animText">
+
+            </div>
             <div>
                 <h2>Score:</h2>
                 <p id="scoreboard"></p>
                 <div id="moveHistory"></div>
             </div>
+            <button id="resetButton" onclick="ResetGame()">Reset</button>
         </div>
     </section>
 

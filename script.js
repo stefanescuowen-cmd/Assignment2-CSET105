@@ -11,10 +11,27 @@ var tieScore = 0;
 
 var amountOfPlays = 1;
 
+let userItemName;
+let compItemName;
+
+let lastWinner = "";
+
 
 //1 = rock
 //2 = paper
 //3 = scissors
+
+//update scoreboard on start
+InitializeScoreboard();
+
+function InitializeScoreboard()
+{
+    let scoreboard = document.getElementById("scoreboard");
+
+    //update actual scoreboard text
+    scoreboard.innerHTML = `<strong>You - ${userScore} | Computer - ${compScore} | Tie - ${tieScore}</strong>`;
+    
+}
 
 function OnButtonPressed(value)
 {
@@ -25,7 +42,13 @@ function OnButtonPressed(value)
 
 function ComputerTurn()
 {
-    compSelection = Number(Math.floor(Math.random() * (Math.floor(3) - Math.ceil(1) + 1)) + Math.ceil(1));
+    //ensures the computer selects a new one each time
+    let previousSelection = compSelection;
+    while (compSelection === previousSelection)
+    {
+        compSelection = Number(Math.floor(Math.random() * (Math.floor(3) - Math.ceil(1) + 1)) + Math.ceil(1));
+
+    }
 
     CompareChoices();
 }
@@ -36,7 +59,8 @@ function CompareChoices()
     if (userSelection === compSelection)
     {
         tieScore++;
-        UpdateScoreboard();
+        lastWinner = "TIE!";
+        SelectionAnimation();
     }
     //if user plays rock
     else if (userSelection === 1)
@@ -45,13 +69,15 @@ function CompareChoices()
         if (compSelection === 2)
         {
             compScore++;
-            UpdateScoreboard();
+            lastWinner = "COMPUTER Wins!";
+            SelectionAnimation();
         }
         //computer loses with scissors
         else if (compSelection === 3)
         {
             userScore++;
-            UpdateScoreboard();
+            lastWinner = "YOU Win!";
+            SelectionAnimation();
         }
     }
     //if user plays paper
@@ -61,13 +87,15 @@ function CompareChoices()
         if (compSelection === 1)
         {
             userScore++;
-            UpdateScoreboard();
+            lastWinner = "YOU Win!";
+            SelectionAnimation();
         }
         //computer wins with scissors
         else if (compSelection === 3)
         {
             compScore++;
-            UpdateScoreboard();
+            lastWinner = "COMPUTER Wins!";
+            SelectionAnimation();
         }
     }
     //if user plays scissors
@@ -77,13 +105,15 @@ function CompareChoices()
         if (compSelection === 2)
         {
             userScore++;
-            UpdateScoreboard();
+            lastWinner = "YOU Win!";
+            SelectionAnimation();
         }
         //computer wins with rock
         else if (compSelection === 1)
         {
             compScore++;
-            UpdateScoreboard();
+            lastWinner = "COMPUTER Wins!";
+            SelectionAnimation();
             
         }
     }
@@ -97,7 +127,7 @@ function UpdateScoreboard()
     AddHistory(userSelection, compSelection);
 
     //update actual scoreboard text
-    scoreboard.innerHTML = `<strong>You - ${userScore}, Computer - ${compScore}, Tie - ${tieScore}</strong>`;
+    scoreboard.innerHTML = `<strong>You - ${userScore} | Computer - ${compScore} | Tie - ${tieScore}</strong>`;
 
     //update number of plays
     amountOfPlays++;
@@ -107,11 +137,21 @@ function UpdateScoreboard()
 function AddHistory(user, computer)
 {
     let historyDiv = document.getElementById("moveHistory");
-    
 
+
+    //add a new history item
+    let newHistoryItem = document.createElement("p");
+    newHistoryItem.innerText = (`${amountOfPlays}. You - ${userItemName} | Computer - ${compItemName}`);
+    historyDiv.append(newHistoryItem);
+
+    //scroll to bottom so newest move is visible
+    historyDiv.scrollTop = historyDiv.scrollHeight;
+}
+
+function SetItemNames()
+{
     //convert index of selection to visible text for user
-    let userItemName;
-    let compItemName;
+    
 
     if (userSelection === 1)
         userItemName = "Rock";
@@ -126,15 +166,42 @@ function AddHistory(user, computer)
         compItemName = "Paper";
     else if (compSelection === 3)
         compItemName = "Scissors";
-
-
-    //add a new history item
-    let newHistoryItem = document.createElement("p");
-    newHistoryItem.innerText = (`${amountOfPlays}. You - ${userItemName}, Computer - ${compItemName}`);
-    historyDiv.append(newHistoryItem);
-
-    //scroll to bottom so newest move is visible
-    historyDiv.scrollTop = historyDiv.scrollHeight;
 }
 
-function 
+async function SelectionAnimation()
+{
+    let buttons = document.getElementById("btn");
+    let animationText = document.getElementById("animText");
+
+    SetItemNames();
+
+    //hide buttons
+    buttons.style.display = "none";
+    animationText.style.display = "block";
+
+    animationText.innerHTML = `<p>${userItemName}</p>`;
+    await sleep(1000);
+    animationText.innerHTML = `<p>${userItemName} vs</p>`;
+    await sleep(1000);
+    animationText.innerHTML = `<p>${userItemName} vs ${compItemName}</p>`;
+    await sleep(2000);
+
+    //display winner
+    animationText.innerHTML = `<p>${lastWinner}</p>`;
+    await sleep(2000);
+
+    //show buttons again
+    buttons.style.display = "flex";
+    animationText.style.display = "none";
+
+    UpdateScoreboard();
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function ResetGame()
+{
+    window.location.reload();
+}

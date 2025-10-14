@@ -42,24 +42,31 @@ body{
     padding: 2rem;
 }
 
-#moveHistory {
-    padding: 0;
+#mainContent div #moveHistory {
+    padding: 1rem;
 
     text-align: left;
     overflow-y: auto;
     height: 20vh;
 }
 
-
-#btn {
-    width: 50%;
-    display: flex;
-    justify-content: center;
+#moveHistory p {
+    padding: 5px 0;
 }
 
-#btn button {
+
+#btn {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn button{
+    aspect-ratio: 1 / 1;
     width: 30%;
-    max-height: 150px;
+    max-width: 150px;
+    max-height: 170px;
     padding: 1rem;
     margin: 0.5rem;
 
@@ -68,6 +75,8 @@ body{
     border-radius: 20px;
     box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
     
+    overflow: hidden;
+
     transform: scale(1);
     cursor: pointer;
 
@@ -86,14 +95,78 @@ body{
 }
 
 #btn button img{
-    width: 100%;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
 }
 
-#scoreboard{
+/*DYNAM STYLING*/
+#animText p {
+    font-size: 25px;
+    color: #0eb3ff;
+    text-shadow: 0 0 30px #0086c4;
+}
+
+#scoreboard {
+    color: #ffee53;
+}
+
+#moveHistory {
+    border: 2px solid #0086c4;
+    border-radius: 20px;
+    margin-top: 1rem;
+    min-width: 20vw;
+    box-shadow: 0 0 20px #0086c4;
 
 }
 
-#moveHistory{
-
+/*RESET BUTTON STYLING*/
+#resetButton {
+    background-color: #0a0a0a;
+    color:white;
+    font-family: "Orbitron", Arial, Helvetica, sans-serif;
+    padding: 0.5rem;
+    border-radius: 15px;
+    border: 2px solid white;
+    transform: scale(1);
+    transition: all .3s;
 }
 
+#resetButton:hover {
+    cursor: pointer;
+    box-shadow: 0 0 20px #0086c4;
+
+    transform: scale(1.1);
+}
+
+#resetButton:active {
+    transform: scale(0.9);
+}
+
+@media screen and (max-width: 1000px)
+{
+    #mainContent {
+        padding: 2rem;
+    }
+    #btn {
+        padding: 1rem;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 850px)
+{
+    #mainContent {
+        padding: 0.5rem;
+    }
+    #btn {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #btn button {
+        width: 100%;
+    }
+}
