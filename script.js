@@ -31,7 +31,7 @@ function InitializeScoreboard()
     let scoreboard = document.getElementById("scoreboard");
 
     //update actual scoreboard text
-    scoreboard.innerHTML = `<strong>You - ${userScore} | Computer - ${compScore} | Tie - ${tieScore}</strong>`;
+    scoreboard.innerHTML = `<strong>YOU - ${userScore} | COMPUTER - ${compScore} | TIE - ${tieScore}</strong>`;
     
 }
 
