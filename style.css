@@ -150,6 +150,53 @@ body{
     transform: scale(0.9);
 }
 
+/*updates to new animation stuff*/
+.battle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.battle .choice img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px cyan);
+    transition: transform 0.3s ease;
+}
+
+.vs {
+    font-size: 1.5rem;
+    color: #ffee53;
+    text-shadow: 0 0 20px #ffee53;
+}
+
+#winnerText {
+    font-size: 2rem;
+    color: #0eb3ff;
+    text-shadow: 0 0 20px #00caff;
+}
+
+/*scrollbar styling*/
+#moveHistory::-webkit-scrollbar {
+    width: 8px;
+}
+
+#moveHistory::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 4px;
+}
+
+#moveHistory::-webkit-scrollbar-thumb {
+    background: #007acc;
+    border-radius: 4px;
+}
+
+#moveHistory::-webkit-scrollbar-thumb:hover {
+    background: #3794ff;
+}
+
 @media screen and (max-width: 1000px)
 {
     #mainContent {

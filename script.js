@@ -185,18 +185,76 @@ async function SelectionAnimation()
     buttons.style.display = "none";
     animationText.style.display = "block";
 
-    animationText.innerHTML = `<p>${userItemName}</p>`;
-    await sleep(1000);
-    animationText.innerHTML = `<p>${userItemName} vs</p>`;
-    await sleep(1000);
-    animationText.innerHTML = `<p>${userItemName} vs ${compItemName}</p>`;
-    await sleep(2000);
+    //show user selection image
+    let userImgSrc = "";
+    let compImgSrc = "";
 
-    //display winner
-    animationText.innerHTML = `<p>${lastWinner}</p>`;
-    await sleep(2000);
+    if (userSelection === 1)
+    {
+        userImgSrc = "images/rock.png";
+    }
+    else if (userSelection === 2)
+    {
+        userImgSrc = "images/paper.webp";
+    }
+    else if (userSelection === 3)
+    {
+        userImgSrc = "images/scissors.png";
+    }
 
-    //show buttons again
+    if (compSelection === 1)
+    {
+        compImgSrc = "images/rock.png";
+    }
+    else if (compSelection === 2)
+    {
+        compImgSrc = "images/paper.webp";
+    }
+    else if (compSelection === 3)
+    {
+        compImgSrc = "images/scissors.png";
+    }
+
+    //show player choice
+    animationText.innerHTML = `
+        <div class="battle">
+            <div class="choice"><img src="${userImgSrc}" alt="${userItemName}"></div>
+        </div>
+    `;
+
+    await sleep(1000);
+
+    //add vs text
+    animationText.innerHTML = `
+        <div class="battle">
+            <div class="choice"><img src="${userImgSrc}" alt="${userItemName}"></div>
+            <p class="vs" id="vsText">/p>
+        </div>
+    `;
+
+    const vsText = document.getElementById("vsText");
+    await TypeWriterEffect(vsText, "VS", 60);
+
+    await sleep(500);
+
+    //show both choices
+    animationText.innerHTML = `
+        <div class="battle">
+            <div class="choice"><img src="${userImgSrc}" alt="${userItemName}"></div>
+            <p class="vs" id="vsText">VS</p>
+            <div class="choice"><img src="${compImgSrc}" alt="${compItemName}"></div>
+        </div>
+    `;
+
+    await sleep(1500);
+
+    //typewriter inner text
+    animationText.innerHTML = `<p id="winnerText"></p>`;
+    const winnerText = document.getElementById("winnerText");
+    await TypeWriterEffect(winnerText, lastWinner, 60);
+    await sleep(1500);
+
+    //reset ui
     buttons.style.display = "flex";
     animationText.style.display = "none";
 
@@ -206,6 +264,18 @@ async function SelectionAnimation()
 //used for waiting for time
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function TypeWriterEffect(element, text, delay = 75)
+{
+    //clear old text
+    element.innerHTML = "";
+
+    for (let i = 0; i < text.length; i++)
+    {
+        element.innerHTML += text.charAt(i);
+        await sleep(delay);
+    }
 }
 
 //reloads page on game reset button
