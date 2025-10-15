@@ -133,7 +133,7 @@ function UpdateScoreboard()
     AddHistory(userSelection, compSelection);
 
     //update actual scoreboard text
-    scoreboard.innerHTML = `<strong>You - ${userScore} | Computer - ${compScore} | Tie - ${tieScore}</strong>`;
+    scoreboard.innerHTML = `<strong>YOU - ${userScore} | COMPUTER - ${compScore} | TIE - ${tieScore}</strong>`;
 
     //update number of plays
     amountOfPlays++;
@@ -148,7 +148,7 @@ function AddHistory(user, computer)
 
     //add a new history item
     let newHistoryItem = document.createElement("p");
-    newHistoryItem.innerText = (`${amountOfPlays}. You - ${userItemName} | Computer - ${compItemName}`);
+    newHistoryItem.innerText = (`${amountOfPlays}. YOU - ${userItemName} | COMPUTER - ${compItemName}`);
     historyDiv.append(newHistoryItem);
 
     //scroll to bottom so newest move is visible
